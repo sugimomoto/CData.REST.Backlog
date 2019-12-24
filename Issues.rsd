@@ -1,0 +1,117 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="Issues" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="actualHours"                       xs:type="unknown"  readonly="false"              other:xPath="/json/actualHours"                       />
+    <attr name="assignee_id"                       xs:type="integer"  readonly="false"              other:xPath="/json/assignee/id"                       />
+    <attr name="assignee_keyword"                  xs:type="string"   readonly="false"              other:xPath="/json/assignee/keyword"                  />
+    <attr name="assignee_lang"                     xs:type="string"   readonly="false"              other:xPath="/json/assignee/lang"                     />
+    <attr name="assignee_mailAddress"              xs:type="string"   readonly="false"              other:xPath="/json/assignee/mailAddress"              />
+    <attr name="assignee_name"                     xs:type="string"   readonly="false"              other:xPath="/json/assignee/name"                     />
+    <attr name="assignee_nulabAccount_name"        xs:type="string"   readonly="false"              other:xPath="/json/assignee/nulabAccount/name"        />
+    <attr name="assignee_nulabAccount_nulabId"     xs:type="string"   readonly="false"              other:xPath="/json/assignee/nulabAccount/nulabId"     />
+    <attr name="assignee_nulabAccount_uniqueId"    xs:type="string"   readonly="false"              other:xPath="/json/assignee/nulabAccount/uniqueId"    />
+    <attr name="assignee_roleType"                 xs:type="integer"  readonly="false"              other:xPath="/json/assignee/roleType"                 />
+    <attr name="assignee_userId"                   xs:type="string"   readonly="false"              other:xPath="/json/assignee/userId"                   />
+    <attr name="attachments"                       xs:type="string"   readonly="false"              other:xPath="/json/attachments"                       />
+    <attr name="category"                          xs:type="string"   readonly="false"              other:xPath="/json/category"                          />
+    <attr name="created"                           xs:type="datetime" readonly="false"              other:xPath="/json/created"                           />
+    <attr name="createdUser_id"                    xs:type="integer"  readonly="false"              other:xPath="/json/createdUser/id"                    />
+    <attr name="createdUser_keyword"               xs:type="string"   readonly="false"              other:xPath="/json/createdUser/keyword"               />
+    <attr name="createdUser_lang"                  xs:type="string"   readonly="false"              other:xPath="/json/createdUser/lang"                  />
+    <attr name="createdUser_mailAddress"           xs:type="string"   readonly="false"              other:xPath="/json/createdUser/mailAddress"           />
+    <attr name="createdUser_name"                  xs:type="string"   readonly="false"              other:xPath="/json/createdUser/name"                  />
+    <attr name="createdUser_nulabAccount_name"     xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/name"     />
+    <attr name="createdUser_nulabAccount_nulabId"  xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/nulabId"  />
+    <attr name="createdUser_nulabAccount_uniqueId" xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/uniqueId" />
+    <attr name="createdUser_roleType"              xs:type="integer"  readonly="false"              other:xPath="/json/createdUser/roleType"              />
+    <attr name="createdUser_userId"                xs:type="string"   readonly="false"              other:xPath="/json/createdUser/userId"                />
+    <attr name="customFields"                      xs:type="string"   readonly="false"              other:xPath="/json/customFields"                      />
+    <attr name="description"                       xs:type="string"   readonly="false"              other:xPath="/json/description"                       />
+    <attr name="dueDate"                           xs:type="datetime" readonly="false"              other:xPath="/json/dueDate"                           />
+    <attr name="estimatedHours"                    xs:type="integer"  readonly="false"              other:xPath="/json/estimatedHours"                    />
+    <attr name="id"                                xs:type="integer"  readonly="false"              other:xPath="/json/id"                                />
+    <attr name="issueKey"                          xs:type="string"   readonly="false"              other:xPath="/json/issueKey"                          />
+    <attr name="issueType_color"                   xs:type="string"   readonly="false"              other:xPath="/json/issueType/color"                   />
+    <attr name="issueType_displayOrder"            xs:type="integer"  readonly="false"              other:xPath="/json/issueType/displayOrder"            />
+    <attr name="issueType_id"                      xs:type="integer"  readonly="false"              other:xPath="/json/issueType/id"                      />
+    <attr name="issueType_name"                    xs:type="string"   readonly="false"              other:xPath="/json/issueType/name"                    />
+    <attr name="issueType_projectId"               xs:type="integer"  readonly="false"              other:xPath="/json/issueType/projectId"               />
+    <attr name="keyId"                             xs:type="integer"  readonly="false"              other:xPath="/json/keyId"                             />
+    <attr name="milestone"                         xs:type="string"   readonly="false"              other:xPath="/json/milestone"                         />
+    <attr name="parentIssueId"                     xs:type="unknown"  readonly="false"              other:xPath="/json/parentIssueId"                     />
+    <attr name="priority_id"                       xs:type="integer"  readonly="false"              other:xPath="/json/priority/id"                       />
+    <attr name="priority_name"                     xs:type="string"   readonly="false"              other:xPath="/json/priority/name"                     />
+    <attr name="projectId"                         xs:type="integer"  readonly="false"              other:xPath="/json/projectId"                         />
+    <attr name="resolution"                        xs:type="unknown"  readonly="false"              other:xPath="/json/resolution"                        />
+    <attr name="sharedFiles"                       xs:type="string"   readonly="false"              other:xPath="/json/sharedFiles"                       />
+    <attr name="stars"                             xs:type="string"   readonly="false"              other:xPath="/json/stars"                             />
+    <attr name="startDate"                         xs:type="datetime" readonly="false"              other:xPath="/json/startDate"                         />
+    <attr name="status_color"                      xs:type="string"   readonly="false"              other:xPath="/json/status/color"                      />
+    <attr name="status_displayOrder"               xs:type="integer"  readonly="false"              other:xPath="/json/status/displayOrder"               />
+    <attr name="status_id"                         xs:type="integer"  readonly="false"              other:xPath="/json/status/id"                         />
+    <attr name="status_name"                       xs:type="string"   readonly="false"              other:xPath="/json/status/name"                       />
+    <attr name="status_projectId"                  xs:type="integer"  readonly="false"              other:xPath="/json/status/projectId"                  />
+    <attr name="summary"                           xs:type="string"   readonly="false"              other:xPath="/json/summary"                           />
+    <attr name="updated"                           xs:type="datetime" readonly="false"              other:xPath="/json/updated"                           />
+    <attr name="updatedUser_id"                    xs:type="integer"  readonly="false"              other:xPath="/json/updatedUser/id"                    />
+    <attr name="updatedUser_keyword"               xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/keyword"               />
+    <attr name="updatedUser_lang"                  xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/lang"                  />
+    <attr name="updatedUser_mailAddress"           xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/mailAddress"           />
+    <attr name="updatedUser_name"                  xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/name"                  />
+    <attr name="updatedUser_nulabAccount_name"     xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/nulabAccount/name"     />
+    <attr name="updatedUser_nulabAccount_nulabId"  xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/nulabAccount/nulabId"  />
+    <attr name="updatedUser_nulabAccount_uniqueId" xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/nulabAccount/uniqueId" />
+    <attr name="updatedUser_roleType"              xs:type="integer"  readonly="false"              other:xPath="/json/updatedUser/roleType"              />
+    <attr name="updatedUser_userId"                xs:type="string"   readonly="false"              other:xPath="/json/updatedUser/userId"                />
+    <attr name="versions"                          xs:type="string"   readonly="false"              other:xPath="/json/versions"                          />
+  </api:info>
+
+  <api:set attr="DataModel" value="DOCUMENT" />
+
+  <api:set attr="ApiKey" value="[_connection.ApiKey]"/>
+  <api:set attr="OrganizationName" value="[_connection.OrganizationName]"/>
+
+  <api:set attr="ResourceName" value="issues"/>
+  <api:set attr="ApiVersion" value="v2"/>
+
+  <api:set attr="JSONPath" value="$." />
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+
+    <api:set attr="URI" value="https://[OrganizationName].backlog.com/api/[ApiVersion]/[ResourceName]?apiKey=[ApiKey]" />
+    <api:call op="jsonproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <api:script method="POST">
+    <api:set attr="method" value="POST"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Inserts are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <api:script method="MERGE">
+    <api:set attr="method" value="PUT"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Updates are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <api:script method="DELETE">
+    <api:set attr="method" value="DELETE"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Deletes are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>

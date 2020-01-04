@@ -3,6 +3,7 @@
   <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
   <api:info title="Issues" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
     <!-- You can modify the name, type, and column size here. -->
+    <attr name="id"                                xs:type="integer"  readonly="false"              other:xPath="/json/id"                                />
     <attr name="actualHours"                       xs:type="unknown"  readonly="false"              other:xPath="/json/actualHours"                       />
     <attr name="assignee_id"                       xs:type="integer"  readonly="false"              other:xPath="/json/assignee/id"                       />
     <attr name="assignee_keyword"                  xs:type="string"   readonly="false"              other:xPath="/json/assignee/keyword"                  />
@@ -31,7 +32,6 @@
     <attr name="description"                       xs:type="string"   readonly="false"              other:xPath="/json/description"                       />
     <attr name="dueDate"                           xs:type="datetime" readonly="false"              other:xPath="/json/dueDate"                           />
     <attr name="estimatedHours"                    xs:type="integer"  readonly="false"              other:xPath="/json/estimatedHours"                    />
-    <attr name="id"                                xs:type="integer"  readonly="false"              other:xPath="/json/id"                                />
     <attr name="issueKey"                          xs:type="string"   readonly="false"              other:xPath="/json/issueKey"                          />
     <attr name="issueType_color"                   xs:type="string"   readonly="false"              other:xPath="/json/issueType/color"                   />
     <attr name="issueType_displayOrder"            xs:type="integer"  readonly="false"              other:xPath="/json/issueType/displayOrder"            />
@@ -70,19 +70,22 @@
 
   <api:set attr="DataModel" value="DOCUMENT" />
 
-  <api:set attr="ApiKey" value="[_connection.ApiKey]"/>
-  <api:set attr="OrganizationName" value="[_connection.OrganizationName]"/>
-
   <api:set attr="ResourceName" value="issues"/>
-  <api:set attr="ApiVersion" value="v2"/>
+  <api:set attr="count" value="100"/>
+  <api:set attr="offset" value="[rows@next | def('1')]"/>
+
+  <api:set attr="URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]&count=[count]&offset=[offset]" />
+
+  <api:set attr="enablepaging" value="true"/>
 
   <api:set attr="JSONPath" value="$." />
 
   <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
   <api:script method="GET">
 
-    <api:set attr="URI" value="https://[OrganizationName].backlog.com/api/[ApiVersion]/[ResourceName]?apiKey=[ApiKey]" />
     <api:call op="jsonproviderGet">
+      <api:set attr="rows@next" value="[offset | add([count])]"/>
+
       <api:push/>
     </api:call>
   </api:script>

@@ -1,0 +1,163 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="Activities" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="id"                                        xs:type="integer"  readonly="false"              other:xPath="/json/id"                                        />
+    <attr name="type"                                      xs:type="integer"  readonly="false"              other:xPath="/json/type"                                      />
+    <attr name="type_name"                                 xs:type="string"  readonly="false"                                                    />
+
+    <attr name="content_id"                                xs:type="integer"  readonly="false"              other:xPath="/json/content/id"                                />
+    <attr name="content_key_id"                            xs:type="integer"  readonly="false"              other:xPath="/json/content/key_id"                            />
+    <attr name="content_summary"                           xs:type="string"   readonly="false"              other:xPath="/json/content/summary"                           />
+    <attr name="content_description"                       xs:type="string"   readonly="false"              other:xPath="/json/content/description"                       />
+
+    <attr name="content_comment_id"                           xs:type="string"  readonly="false"              other:xPath="/json/content/comment/id"                           />
+    <attr name="content_comment_content"                           xs:type="string"  readonly="false"              other:xPath="/json/content/comment/content"                           />
+
+    <attr name="content_dir"                               xs:type="string"   readonly="false"              other:xPath="/json/content/dir"                               />
+    <attr name="content_group_project_activities"          xs:type="string"   readonly="false"              other:xPath="/json/content/group_project_activities"          />
+    <attr name="content_name"                              xs:type="string"   readonly="false"              other:xPath="/json/content/name"                              />
+    <attr name="content_reference_date"                    xs:type="string"  readonly="false"              other:xPath="/json/content/reference_date"                    />
+    <attr name="content_size"                              xs:type="integer"  readonly="false"              other:xPath="/json/content/size"                              />
+    <attr name="content_start_date"                        xs:type="datetime"  readonly="false"              other:xPath="/json/content/start_date"                        />
+
+    <attr name="content_users"                             xs:type="string"   readonly="false"              other:xPath="/json/content/users"                             />
+    <attr name="content_changes"                             xs:type="string"   readonly="false"              other:xPath="/json/content/changes"                             />
+
+    <attr name="notifications"                             xs:type="string"   readonly="false"              other:xPath="/json/notifications"                             />
+
+    <attr name="created"                                   xs:type="datetime" readonly="false"              other:xPath="/json/created"                                   />
+
+    <attr name="createdUser_id"                            xs:type="integer"  readonly="false"              other:xPath="/json/createdUser/id"                            />
+    <attr name="createdUser_keyword"                       xs:type="string"   readonly="false"              other:xPath="/json/createdUser/keyword"                       />
+    <attr name="createdUser_lang"                          xs:type="string"   readonly="false"              other:xPath="/json/createdUser/lang"                          />
+    <attr name="createdUser_mailAddress"                   xs:type="string"   readonly="false"              other:xPath="/json/createdUser/mailAddress"                   />
+    <attr name="createdUser_name"                          xs:type="string"   readonly="false"              other:xPath="/json/createdUser/name"                          />
+    <attr name="createdUser_nulabAccount.name"             xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/name"             />
+    <attr name="createdUser_nulabAccount.nulabId"          xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/nulabId"          />
+    <attr name="createdUser_nulabAccount.uniqueId"         xs:type="string"   readonly="false"              other:xPath="/json/createdUser/nulabAccount/uniqueId"         />
+    <attr name="createdUser_roleType"                      xs:type="integer"  readonly="false"              other:xPath="/json/createdUser/roleType"                      />
+    <attr name="createdUser_userId"                        xs:type="string"   readonly="false"              other:xPath="/json/createdUser/userId"                        />
+
+    <attr name="project_archived"                          xs:type="boolean"  readonly="false"              other:xPath="/json/project/archived"                          />
+    <attr name="project_chartEnabled"                      xs:type="boolean"  readonly="false"              other:xPath="/json/project/chartEnabled"                      />
+    <attr name="project_displayOrder"                      xs:type="integer"  readonly="false"              other:xPath="/json/project/displayOrder"                      />
+    <attr name="project_id"                                xs:type="integer"  readonly="false"              other:xPath="/json/project/id"                                />
+    <attr name="project_name"                              xs:type="string"   readonly="false"              other:xPath="/json/project/name"                              />
+    <attr name="project_projectKey"                        xs:type="string"   readonly="false"              other:xPath="/json/project/projectKey"                        />
+    <attr name="project_projectLeaderCanEditProjectLeader" xs:type="boolean"  readonly="false"              other:xPath="/json/project/projectLeaderCanEditProjectLeader" />
+    <attr name="project_subtaskingEnabled"                 xs:type="boolean"  readonly="false"              other:xPath="/json/project/subtaskingEnabled"                 />
+    <attr name="project_textFormattingRule"                xs:type="string"   readonly="false"              other:xPath="/json/project/textFormattingRule"                />
+    <attr name="project_useWikiTreeView"                   xs:type="boolean"  readonly="false"              other:xPath="/json/project/useWikiTreeView"                   />
+
+
+    <input name="userId" xs:type="integer" />
+    <input name="activityTypeId" xs:type="integer" />
+    <input name="minId" xs:type="integer" />
+    <input name="maxId" xs:type="integer" />
+    <input name="count" xs:type="integer" />
+    <input name="order" xs:type="string" />
+
+  </api:info>
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+
+    <api:set attr="ResourceName" value="users"/>
+    <api:set attr="UsersRequest.RepeatElement" value="/"/>
+    <api:set attr="UsersRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+
+    <api:call op="jsonproviderGet" input="UsersRequest" output="UsersResponse">
+
+      <api:set attr="UrlParameter" value=""/>
+
+      <api:exists attr="_input.activityTypeId">
+          <api:set attr="UrlParameter" value="[UrlParameter]&_input.activityTypeId\[\]=[_input.activityTypeId]" />
+      </api:exists>
+
+      <api:exists attr="_input.minId">
+          <api:set attr="UrlParameter" value="[UrlParameter]&minId=[_input.minId]" />
+      </api:exists>
+
+      <api:exists attr="_input.maxId">
+          <api:set attr="UrlParameter" value="[UrlParameter]&maxId=[_input.maxId]" />
+      </api:exists>
+
+      <api:set attr="UrlParameter" value="[UrlParameter]&count=[_input.count | def('100')]" />
+      <api:set attr="UrlParameter" value="[UrlParameter]&order=[_input.order | def('desc')]" />
+
+      <api:set attr="ResourceName" value="users/[UsersResponse.id]/activities"/>
+      <api:set attr="ActivitiesRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey][UrlParameter | def()]" />
+
+      <api:set attr="ActivitiesRequest.JSONPath" value="$." />
+      <api:set attr="ActivitiesRequest.DataModel" value="DOCUMENT" />
+      <api:set attr="ActivitiesRequest.enablepaging" value="TRUE" />
+
+      <api:call op="jsonproviderGet" input="ActivitiesRequest" output="ActivitiesResponse">
+
+        <api:setm item="typeCollection">
+        1 = 課題の追加
+        2 = 課題の更新
+        3 = 課題にコメント
+        4 = 課題の削除
+        5 = Wikiを追加
+        6 = Wikiを更新
+        7 = Wikiを削除
+        8 = 共有ファイルを追加
+        9 = 共有ファイルを更新
+        10 = 共有ファイルを削除
+        11 = Subversionコミット
+        12 = GITプッシュ
+        13 = GITリポジトリ作成
+        14 = 課題をまとめて更新
+        15 = プロジェクトに参加
+        16 = プロジェクトから脱退
+        17 = コメントにお知らせを追加
+        18 = プルリクエストの追加
+        19 = プルリクエストの更新
+        20 = プルリクエストにコメント
+        21 = プルリクエストの削除
+        22 = マイルストーンの追加
+        23 = マイルストーンの更新
+        24 = マイルストーンの削除
+        25 = グループがプロジェクトに参加
+        26 = グループがプロジェクトから脱退
+        </api:setm>
+
+        <api:set attr="ActivitiesResponse.type_name" value="[typeCollection.[ActivitiesResponse.type]]"/>
+
+        <api:push/>
+  
+      </api:call>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <api:script method="POST">
+    <api:set attr="method" value="POST"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Inserts are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <api:script method="MERGE">
+    <api:set attr="method" value="PUT"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Updates are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <api:script method="DELETE">
+    <api:set attr="method" value="DELETE"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Deletes are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>

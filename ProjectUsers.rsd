@@ -1,0 +1,75 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="json" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="projectId"             xs:type="integer" readonly="false"                          />
+    <attr name="projectUserid"         xs:type="integer" readonly="false"              other:xPath="/json/id"                    />
+    <attr name="keyword"               xs:type="string"  readonly="false"              other:xPath="/json/keyword"               />
+    <attr name="lang"                  xs:type="string"  readonly="false"              other:xPath="/json/lang"                  />
+    <attr name="mailAddress"           xs:type="string"  readonly="false"              other:xPath="/json/mailAddress"           />
+    <attr name="name"                  xs:type="string"  readonly="false"              other:xPath="/json/name"                  />
+    <attr name="nulabAccount_name"     xs:type="string"  readonly="false"              other:xPath="/json/nulabAccount/name"     />
+    <attr name="nulabAccount_nulabId"  xs:type="string"  readonly="false"              other:xPath="/json/nulabAccount/nulabId"  />
+    <attr name="nulabAccount_uniqueId" xs:type="string"  readonly="false"              other:xPath="/json/nulabAccount/uniqueId" />
+    <attr name="roleType"              xs:type="integer" readonly="false"              other:xPath="/json/roleType"              />
+    <attr name="userId"                xs:type="string"  readonly="false"              other:xPath="/json/userId"                />
+  </api:info>
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+
+    <api:set attr="ResourceName" value="projects"/>
+    <api:set attr="ProjectRequest.RepeatElement" value="/"/>
+    <api:set attr="ProjectUsersRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+
+    <!-- Get Project List-->
+    <api:call op="jsonproviderGet" input="ProjectRequest" output="ProjectResponse">
+
+      <api:set attr="ProjectUsersRequest.ProjectId" value="[ProjectResponse.projectUserid]"/>
+      <api:set attr="ResourceName" value="projects/[ProjectUsersRequest.ProjectId]/users"/>
+
+      <api:set attr="ProjectUsersRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+      <api:set attr="ProjectUsersRequest.JSONPath" value="$." />
+      <api:set attr="ProjectUsersRequest.enablepaging" value="TRUE" />
+
+      <!-- Get Project Users List-->
+      <api:set attr="ProjectUsersRequest.DataModel" value="DOCUMENT" />
+
+      <api:call op="jsonproviderGet" input="ProjectUsersRequest" output="ProjectUsersResponse">
+        <api:set attr="ProjectUsersResponse.projectId" value="[ProjectUsersRequest.ProjectId]"/>
+
+        <api:push/>
+      </api:call>
+
+    </api:call>
+  </api:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <api:script method="POST">
+    <api:set attr="method" value="POST"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Inserts are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <api:script method="MERGE">
+    <api:set attr="method" value="PUT"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Updates are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <api:script method="DELETE">
+    <api:set attr="method" value="DELETE"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Deletes are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>

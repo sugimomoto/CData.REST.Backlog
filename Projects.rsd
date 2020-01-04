@@ -1,0 +1,64 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="json" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="archived"                          xs:type="boolean" readonly="false"              other:xPath="/json/archived"                          />
+    <attr name="chartEnabled"                      xs:type="boolean" readonly="false"              other:xPath="/json/chartEnabled"                      />
+    <attr name="displayOrder"                      xs:type="integer" readonly="false"              other:xPath="/json/displayOrder"                      />
+    <attr name="id"                                xs:type="integer" readonly="false"              other:xPath="/json/id"                                />
+    <attr name="name"                              xs:type="string"  readonly="false"              other:xPath="/json/name"                              />
+    <attr name="projectKey"                        xs:type="string"  readonly="false"              other:xPath="/json/projectKey"                        />
+    <attr name="projectLeaderCanEditProjectLeader" xs:type="boolean" readonly="false"              other:xPath="/json/projectLeaderCanEditProjectLeader" />
+    <attr name="subtaskingEnabled"                 xs:type="boolean" readonly="false"              other:xPath="/json/subtaskingEnabled"                 />
+    <attr name="textFormattingRule"                xs:type="string"  readonly="false"              other:xPath="/json/textFormattingRule"                />
+    <attr name="useWikiTreeView"                   xs:type="boolean" readonly="false"              other:xPath="/json/useWikiTreeView"                   />
+  </api:info>
+
+  <api:set attr="JSONPath" value="$." />
+
+  <api:set attr="DataModel" value="DOCUMENT" />
+
+  <api:set attr="ApiKey" value="[_connection.ApiKey]"/>
+  <api:set attr="OrganizationName" value="[_connection.OrganizationName]"/>
+
+  <api:set attr="ResourceName" value="projects"/>
+  <api:set attr="ApiVersion" value="v2"/>
+
+  <api:set attr="URI" value="https://[OrganizationName].backlog.com/api/[ApiVersion]/[ResourceName]?apiKey=[ApiKey]" />
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+    <api:call op="jsonproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <api:script method="POST">
+    <api:set attr="method" value="POST"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Inserts are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <api:script method="MERGE">
+    <api:set attr="method" value="PUT"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Updates are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <api:script method="DELETE">
+    <api:set attr="method" value="DELETE"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Deletes are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>

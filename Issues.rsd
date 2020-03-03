@@ -74,7 +74,7 @@
   <api:set attr="count" value="100"/>
   <api:set attr="offset" value="[rows@next | def('1')]"/>
 
-  <api:set attr="URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]&count=[count]&offset=[offset]" />
+  <api:set attr="URI" value="https://[_connection.OrganizationName]/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]&count=[count]&offset=[offset]" />
 
   <api:set attr="enablepaging" value="true"/>
 

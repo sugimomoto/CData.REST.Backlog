@@ -21,7 +21,7 @@
 
     <api:set attr="ResourceName" value="projects"/>
     <api:set attr="ProjectRequest.RepeatElement" value="/"/>
-    <api:set attr="ProjectRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+    <api:set attr="ProjectRequest.URI" value="https://[_connection.OrganizationName]/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
 
     <!-- Get Project List-->
     <api:call op="jsonproviderGet" input="ProjectRequest" output="ProjectResponse">
@@ -29,7 +29,7 @@
       <api:set attr="ProjectUsersRequest.ProjectId" value="[ProjectResponse.projectUserid]"/>
       <api:set attr="ResourceName" value="projects/[ProjectUsersRequest.ProjectId]/users"/>
 
-      <api:set attr="ProjectUsersRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+      <api:set attr="ProjectUsersRequest.URI" value="https://[_connection.OrganizationName]/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
       <api:set attr="ProjectUsersRequest.JSONPath" value="$." />
       <api:set attr="ProjectUsersRequest.enablepaging" value="TRUE" />
 

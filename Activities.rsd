@@ -66,7 +66,7 @@
 
     <api:set attr="ResourceName" value="users"/>
     <api:set attr="UsersRequest.RepeatElement" value="/"/>
-    <api:set attr="UsersRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
+    <api:set attr="UsersRequest.URI" value="https://[_connection.OrganizationName]/api/v2/[ResourceName]?apiKey=[_connection.ApiKey]" />
 
     <api:call op="jsonproviderGet" input="UsersRequest" output="UsersResponse">
 
@@ -88,7 +88,7 @@
       <api:set attr="UrlParameter" value="[UrlParameter]&order=[_input.order | def('desc')]" />
 
       <api:set attr="ResourceName" value="users/[UsersResponse.id]/activities"/>
-      <api:set attr="ActivitiesRequest.URI" value="https://[_connection.OrganizationName].backlog.com/api/v2/[ResourceName]?apiKey=[_connection.ApiKey][UrlParameter | def()]" />
+      <api:set attr="ActivitiesRequest.URI" value="https://[_connection.OrganizationName]/api/v2/[ResourceName]?apiKey=[_connection.ApiKey][UrlParameter | def()]" />
 
       <api:set attr="ActivitiesRequest.JSONPath" value="$." />
       <api:set attr="ActivitiesRequest.DataModel" value="DOCUMENT" />

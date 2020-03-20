@@ -1,0 +1,61 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- See Column Definitions to specify column behavior and use XPaths to extract column values from JSON. -->
+  <api:info title="Versions" desc="Generated schema file." xmlns:other="http://apiscript.com/ns?v1">
+    <!-- You can modify the name, type, and column size here. -->
+    <attr name="archived"       xs:type="boolean" readonly="false"              other:xPath="/json/archived"       />
+    <attr name="description"    xs:type="unknown" readonly="false"              other:xPath="/json/description"    />
+    <attr name="displayOrder"   xs:type="integer" readonly="false"              other:xPath="/json/displayOrder"   />
+    <attr name="id"             xs:type="integer" readonly="false"              other:xPath="/json/id"             />
+    <attr name="name"           xs:type="string"  readonly="false"              other:xPath="/json/name"           />
+    <attr name="projectId"      xs:type="integer" readonly="false"              other:xPath="/json/projectId"      />
+    <attr name="releaseDueDate" xs:type="unknown" readonly="false"              other:xPath="/json/releaseDueDate" />
+    <attr name="startDate"      xs:type="unknown" readonly="false"              other:xPath="/json/startDate"      />
+  </api:info>
+
+  <api:set attr="DataModel" value="DOCUMENT" />
+  <api:null attr="_input.projectId">
+    <api:throw code="required" desc="Project Id is required for this Resource." />
+  </api:null>
+  
+  <api:set attr="ResourceName" value="versions"/>
+
+  <api:set attr="URI" value="https://[_connection.OrganizationName]/api/v2/projects/[_input.projectId]/[ResourceName]?apiKey=[_connection.ApiKey]" />
+
+  <api:set attr="JSONPath" value="$." />
+
+  <!-- The GET method corresponds to SELECT. Here you can override the default processing of the SELECT statement. The results of processing are pushed to the schema's output. See SELECT Execution for more information. -->
+  <api:script method="GET">
+    <api:call op="jsonproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for INSERTS please see the INSERT Execution page within the help for further information and examples. -->
+  <api:script method="POST">
+    <api:set attr="method" value="POST"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Inserts are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for UPDATES please see the UPDATE Execution page within the help for further information and examples. -->
+  <api:script method="MERGE">
+    <api:set attr="method" value="PUT"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Updates are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <!-- To add support for DELETES please see the DELETE Execution page within the help for further information and examples. -->
+  <api:script method="DELETE">
+    <api:set attr="method" value="DELETE"/>
+    <api:call op="jsonproviderGet">
+      <api:throw code="500" desc="Deletes are not currently supported."/>
+      <api:push/>
+    </api:call>
+  </api:script>
+
+</api:script>
